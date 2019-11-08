@@ -1,0 +1,40 @@
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd ">
+
+    <context:annotation-config />
+
+    &lt;!&ndash;Activemq的连接工厂&ndash;&gt;
+    <bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://127.0.0.1:61616" />
+    </bean>
+    &lt;!&ndash;spring jms为我们提供的连接池 获取一个连接工厂&ndash;&gt;
+    <bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+        <property name="targetConnectionFactory" ref="targetConnectionFactory" />
+    </bean>
+    &lt;!&ndash; 消息目的地  (主题模式)&ndash;&gt;
+    &lt;!&ndash;<bean id="queueDestination" class="org.apache.activemq.command.ActiveMQTopic">
+        &lt;!&ndash;配置队列模型的消息名称&ndash;&gt;
+        <constructor-arg value="SpringActiveMQMsgTopic"/>
+    </bean>&ndash;&gt;
+
+    &lt;!&ndash; 消息目的地  点对点的模式&ndash;&gt;
+    <bean id="queueDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg value="SpringActiveMQMsg"/>
+    </bean>
+    &lt;!&ndash; jms模板  用于进行消息发送&ndash;&gt;
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+    </bean>
+
+    <bean class="com.springboot.zwd.exampledemo.service.impl.ProduceServiceImpl"></bean>
+</beans>
+
+-->
