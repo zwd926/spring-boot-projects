@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * springboot整合mybatis多数据源
  * @author 随风逐梦
  * @create 2019-11-13 14:38
  */
@@ -38,5 +39,7 @@ public class multipleController {
         response.setData(map);
         return response;
     }
+
+
 }
 
