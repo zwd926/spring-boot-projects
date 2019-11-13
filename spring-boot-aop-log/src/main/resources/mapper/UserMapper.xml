@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itcast.zwd.springboot.springbootaoplog.mapper.UserMapper" >
+
+  <resultMap id="BaseResultMap" type="com.itcast.zwd.springboot.springbootaoplog.entity.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+<!--    <result column="email" property="email" jdbcType="VARCHAR" />-->
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, code, email
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.itcast.zwd.springboot.springbootaoplog.entity.User" >
+    insert into user (id, name, code,email)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},)
+  </insert>
+  <insert id="insertSelective" parameterType="com.itcast.zwd.springboot.springbootaoplog.entity.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itcast.zwd.springboot.springbootaoplog.entity.User" >
+    update user
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itcast.zwd.springboot.springbootaoplog.entity.User" >
+    update user
+    set name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="selectByIds" resultType="com.itcast.zwd.springboot.springbootaoplog.entity.User" parameterType="java.util.List">
+    SELECT <include refid="Base_Column_List"/>
+    FROM user
+    <where>
+      id IN
+
+      <foreach collection="list" item="item" separator="," open="(" close=")" index="">
+        #{item,jdbcType=VARCHAR}
+      </foreach>
+    </where>
+  </select>
+
+  <select id="selectByStrIds" resultType="com.itcast.zwd.springboot.springbootaoplog.entity.User">
+    SELECT <include refid="Base_Column_List"/>
+    FROM user
+    WHERE id IN (${ids})
+  </select>
+
+  <select id="selectAllIds" resultType="java.lang.Integer">
+    SELECT item_id FROM codes
+  </select>
+
+  <select id="selectAllUserEmails" resultType="java.lang.String">
+    SELECT email
+    FROM user
+  </select>
+
+  <insert id="insertCode">
+    INSERT INTO codes(id,item_id) VALUES(null,#{itemId})
+  </insert>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
