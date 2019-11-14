@@ -1,0 +1,21 @@
+
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ssm?characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=UTC
+    username: root
+    password: root
+#    druid:
+#      initial-size: 1
+#      min-idle: 1
+#      max-active: 20
+#      test-on-borrow: true
+#      stat-view-servlet:
+#        allow: true
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  config-location: classpath:mybatis-config.xml
+
+
